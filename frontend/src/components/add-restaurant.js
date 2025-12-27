@@ -32,19 +32,50 @@ const saveRestaurant = () => {
 };
 
   return (
-    <div className="submit-form">
-      <h2>Add Restaurant</h2>
+  <div className="add-restaurant-page">
+    <div className="add-restaurant-card">
+      <h2>Add a New Restaurant</h2>
 
-      <input name="name" placeholder="Name" onChange={handleInputChange} />
-      <input name="cuisine" placeholder="Cuisine" onChange={handleInputChange} />
-      <input name="borough" placeholder="Borough" onChange={handleInputChange} />
-      <input name="building" placeholder="Building" onChange={handleInputChange} />
-      <input name="street" placeholder="Street" onChange={handleInputChange} />
-      <input name="zipcode" placeholder="Zipcode" onChange={handleInputChange} />
+      <div className="form-group">
+        <label>Restaurant Name</label>
+        <input name="name" onChange={handleInputChange} />
+      </div>
 
-      <button onClick={saveRestaurant}>Add Restaurant</button>
+      <div className="form-row">
+        <div className="form-group">
+          <label>Cuisine</label>
+          <input name="cuisine" onChange={handleInputChange} />
+        </div>
+
+        <div className="form-group">
+          <label>Borough</label>
+          <input name="borough" onChange={handleInputChange} />
+        </div>
+      </div>
+
+      <div className="form-row">
+        <div className="form-group">
+          <label>Building</label>
+          <input name="building" onChange={handleInputChange} />
+        </div>
+
+        <div className="form-group">
+          <label>Street</label>
+          <input name="street" onChange={handleInputChange} />
+        </div>
+
+        <div className="form-group">
+          <label>Zipcode</label>
+          <input name="zipcode" onChange={handleInputChange} />
+        </div>
+      </div>
+
+      <button className="btn-submit" onClick={saveRestaurant}>
+        Add Restaurant
+      </button>
     </div>
-  );
+  </div>
+);
 };
 
 export default AddRestaurant;
