@@ -7,6 +7,26 @@ const router = express.Router()
 router.route("/").get(RestaurantsCtrl.apiGetRestaurants)
 router.route("/id/:id").get(RestaurantsCtrl.apiGetRestaurantById)
 router.route("/cuisines").get(RestaurantsCtrl.apiGetRestaurantCuisines)
+router.route("/add").post(async (req, res) => {
+  try {
+    const restaurant = {
+      name: req.body.name,
+      cuisine: req.body.cuisine,
+      borough: req.body.borough,
+      address: {
+        building: req.body.building,
+        street: req.body.street,
+        zipcode: req.body.zipcode
+      }
+    };
+
+    const result = await RestaurantsDAO.addRestaurant(restaurant);
+
+    res.status(201).json({ status: "success", restaurant: result });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 router
   .route("/review")
