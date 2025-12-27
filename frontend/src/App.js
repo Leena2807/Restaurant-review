@@ -41,7 +41,9 @@ function App() {
             <Link to={"/restaurants"} className="nav-link">
               📋 Restaurants
             </Link>
-            
+            <Link to="/add" className="nav-link">
+  ➕ Add Restaurant
+</Link>
             {user ? (
               <div className="user-menu">
                 <span className="user-greeting">👋 Welcome, {user.name}</span>
