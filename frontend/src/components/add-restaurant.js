@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import RestaurantDataService from "../services/restaurant";
-
+import { useNavigate } from "react-router-dom";
 const AddRestaurant = () => {
+  const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState({
     name: "",
     cuisine: "",
