@@ -86,9 +86,11 @@ const RestaurantsList = props => {
   };
 
   return (
-    <div>
-      <div className="row pb-1">
-        <div className="input-group col-lg-4">
+  <div>
+    <div className="row pb-1">
+      {/* Column 1 */}
+      <div className="col-lg-4">
+        <div className="input-group">
           <input
             type="text"
             className="form-control"
@@ -98,7 +100,7 @@ const RestaurantsList = props => {
           />
           <div className="input-group-append">
             <button
-              className="btn btn-outline-secondary"
+              className="btn-primary1 btn-search"
               type="button"
               onClick={findByName}
             >
@@ -106,7 +108,11 @@ const RestaurantsList = props => {
             </button>
           </div>
         </div>
-        <div className="input-group col-lg-4">
+      </div>
+
+      {/* Column 2 */}
+      <div className="col-lg-4">
+        <div className="input-group">
           <input
             type="text"
             className="form-control"
@@ -116,7 +122,7 @@ const RestaurantsList = props => {
           />
           <div className="input-group-append">
             <button
-              className="btn btn-outline-secondary"
+              className="btn-primary1 btn-search"
               type="button"
               onClick={findByZip}
             >
@@ -124,55 +130,58 @@ const RestaurantsList = props => {
             </button>
           </div>
         </div>
-        <div className="input-group col-lg-4">
+      </div>
 
-          <select onChange={onChangeSearchCuisine}>
-             {cuisines.map(cuisine => {
-               return (
-                 <option value={cuisine}> {cuisine.substr(0, 20)} </option>
-               )
-             })}
+      {/* Column 3 */}
+      <div className="col-lg-4">
+        <div className="input-group">
+          <select className="form-control" onChange={onChangeSearchCuisine}>
+            {cuisines.map((cuisine, index) => {
+              return (
+                <option key={index} value={cuisine}> {cuisine.substr(0, 20)} </option>
+              )
+            })}
           </select>
           <div className="input-group-append">
             <button
-              className="btn btn-outline-secondary"
+              className="btn-primary1 btn-search"
               type="button"
               onClick={findByCuisine}
             >
               Search
             </button>
           </div>
-
         </div>
       </div>
-      <div className="row">
-        {restaurants.map((restaurant) => {
-          const address = `${restaurant.address.building} ${restaurant.address.street}, ${restaurant.address.zipcode}`;
-          return (
-            <div className="col-lg-4 pb-1">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{restaurant.name}</h5>
-                  <p className="card-text">
-                    <strong>Cuisine: </strong>{restaurant.cuisine}<br/>
-                    <strong>Address: </strong>{address}
-                  </p>
-                  <div className="row">
+    </div>
+
+    {/* Rest of your code remains the same */}
+    <div className="row">
+      {restaurants.map((restaurant, index) => {
+        const address = `${restaurant.address.building} ${restaurant.address.street}, ${restaurant.address.zipcode}`;
+        return (
+          <div className="col-lg-4 pb-1" key={restaurant._id || index}>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{restaurant.name}</h5>
+                <p className="card-text">
+                  <strong>Cuisine: </strong>{restaurant.cuisine}<br/>
+                  <strong>Address: </strong>{address}
+                </p>
+                <div className="row">
                   <Link to={"/restaurants/"+restaurant._id} className="btn btn-primary col-lg-5 mx-1 mb-1">
                     View Reviews
                   </Link>
-                  <a target="_blank" href={"https://www.google.com/maps/place/" + address} className="btn btn-primary col-lg-5 mx-1 mb-1">View Map</a>
-                  </div>
+                  <a target="_blank" href={"https://www.google.com/maps/place/" + address} className="btn btn-primary col-lg-5 mx-1 mb-1 btn-secondary">View Map</a>
                 </div>
               </div>
             </div>
-          );
-        })}
-
-
-      </div>
+          </div>
+        );
+      })}
     </div>
-  );
+  </div>
+);
 };
 
 export default RestaurantsList;

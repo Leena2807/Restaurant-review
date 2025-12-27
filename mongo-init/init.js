@@ -2,7 +2,7 @@
 // This script runs when the MongoDB container starts for the first time
 
 // Switch to the restaurant_reviews database
-db = db.getSiblingDB('restaurant_reviews');
+db = db.getSiblingDB('restaurant_sample');
 
 // Create the restaurants collection with sample data
 db.restaurants.insertMany([

@@ -22,12 +22,19 @@ MongoClient.connect(
 })
 .then(async client => {
     try {
-        console.log("Connected to MongoDB successfully")
-        await RestaurantsDAO.injectDB(client)
-        await ReviewsDAO.injectDB(client)
-        app.listen(port, () => {
-            console.log(`Server listening on port ${port}`)
-        })
+       console.log("Connected to MongoDB successfully")
+
+const db = client.db(process.env.RESTREVIEWS_NS)
+const count = await db.collection("restaurants").countDocuments()
+console.log(`Using database: ${process.env.RESTREVIEWS_NS}`)
+console.log(`Restaurant count in DB: ${count}`)
+
+await RestaurantsDAO.injectDB(client)
+await ReviewsDAO.injectDB(client)
+
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`)
+})
     } catch (error) {
         console.error("Error initializing database:", error)
         process.exit(1)

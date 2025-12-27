@@ -45,54 +45,71 @@ const Restaurant = props => {
   };
 
   return (
-    <div>
+    <div className="fade-in">
       {restaurant ? (
         <div>
-          <h5>{restaurant.name}</h5>
-          <p>
-            <strong>Cuisine: </strong>{restaurant.cuisine}<br/>
-            <strong>Address: </strong>{restaurant.address.building} {restaurant.address.street}, {restaurant.address.zipcode}
-          </p>
-          <Link to={"/restaurants/" + id + "/review"} className="btn btn-primary">
-            Add Review
-          </Link>
-          <h4> Reviews </h4>
-          <div className="row">
-            {restaurant.reviews.length > 0 ? (
-             restaurant.reviews.map((review, index) => {
-               return (
-                 <div className="col-lg-4 pb-1" key={index}>
-                   <div className="card">
-                     <div className="card-body">
-                       <p className="card-text">
-                         {review.text}<br/>
-                         <strong>User: </strong>{review.name}<br/>
-                         <strong>Date: </strong>{review.date}
-                       </p>
-                       {props.user && props.user.id === review.user_id &&
-                          <div className="row">
-                            <button onClick={() => deleteReview(review._id, index)} className="btn btn-primary col-lg-5 mx-1 mb-1">Delete</button>
-                            <Link to={"/restaurants/" + id + "/review"} state={{ currentReview: review }} className="btn btn-primary col-lg-5 mx-1 mb-1">Edit</Link>
-                          </div>                   
-                       }
-                     </div>
-                   </div>
-                 </div>
-               );
-             })
-            ) : (
-            <div className="col-sm-4">
-              <p>No reviews yet.</p>
+          <div className="restaurant-header">
+            <h2 className="restaurant-title">{restaurant.name}</h2>
+            <div className="restaurant-meta">
+              <span className="cuisine-badge">{restaurant.cuisine}</span>
+              <span className="restaurant-address">
+                {restaurant.address.building} {restaurant.address.street}, {restaurant.address.zipcode}
+              </span>
             </div>
-            )}
-
+          </div>
+          
+          <div className="action-bar">
+            <Link to={"/restaurants/" + id + "/review"} className="btn-primary">
+              ✍️ Add Review
+            </Link>
           </div>
 
+          <div className="reviews-section">
+            <h3 className="reviews-title">Reviews</h3>
+            
+            {restaurant.reviews.length > 0 ? (
+              <div className="reviews-grid">
+                {restaurant.reviews.map((review, index) => {
+                  return (
+                    <div key={index} className="card review-card">
+                      <div className="card-body">
+                        <p className="review-text">{review.text}</p>
+                        <div className="review-meta">
+                          <span className="review-user">👤 {review.name}</span>
+                          <span className="review-date">📅 {new Date(review.date).toLocaleDateString()}</span>
+                        </div>
+                        {props.user && props.user.id === review.user_id &&
+                          <div className="review-actions">
+                            <button 
+                              onClick={() => deleteReview(review._id, index)} 
+                              className="btn-danger"
+                            >
+              🗑️ Delete
+                            </button>
+                            <Link 
+                              to={"/restaurants/" + id + "/review"} 
+                              state={{ currentReview: review }} 
+                              className="btn-accent"
+                            >
+              ✏️ Edit
+                            </Link>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="no-reviews">
+                <p>No reviews yet. Be the first to share your experience!</p>
+              </div>
+            )}
+          </div>
         </div>
       ) : (
-        <div>
-          <br />
-          <p>No restaurant selected.</p>
+        <div className="loading-state">
+          <p>Loading restaurant details...</p>
         </div>
       )}
     </div>
