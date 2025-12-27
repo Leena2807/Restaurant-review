@@ -23,7 +23,7 @@ const saveRestaurant = () => {
   RestaurantDataService.createRestaurant(restaurant)
    .then(() => {
   alert("Restaurant added successfully");
-  window.location.href = "/restaurants";
+  navigate("/restaurants");
 })
     .catch(e => {
       alert("Error adding restaurant");
