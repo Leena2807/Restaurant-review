@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -20,7 +19,14 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App"
+     style={{
+    backgroundImage: "url('/food.jpg')",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    minHeight: "100vh"
+  }}>
       {/* Fixed Navbar with proper alignment */}
       <nav className="navbar-glass">
         <div className="container">
