@@ -1,4 +1,5 @@
 import express from "express"
+import RestaurantsDAO from "../dao/restaurantsDAO.js";
 import RestaurantsCtrl from "./restaurants.controller.js"
 import ReviewsCtrl from "./reviews.controller.js"
 
