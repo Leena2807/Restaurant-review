@@ -22,12 +22,13 @@ function App() {
   return (
     <div className="App"
      style={{
+              backgroundColor: "#111",
+
     backgroundImage: "url('/food.jpg')",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    minHeight: "100vh",
-       backgroundColor: "#111",
+    minHeight: "100vh"
   }}>
       {/* Fixed Navbar with proper alignment */}
       <nav className="navbar-glass">
