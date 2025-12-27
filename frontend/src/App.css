@@ -526,4 +526,7 @@ body {
     flex-direction: column;
     align-items: center;
   }
+  .navbar-glass .container{
+    padding-bottom:30px;
+  }
 }
