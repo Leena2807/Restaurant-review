@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
+import AddRestaurant from "./components/add-restaurant";
 import AddReview from "./components/add-review";
 import Restaurant from "./components/restaurants";
 import RestaurantsList from "./components/restaurants-list";
@@ -76,6 +76,7 @@ function App() {
               path="/login"
               element={<Login login={login} />}
             />
+                <Route path="/add" element={<AddRestaurant />} />
           </Routes>
         </div>
       </main>
