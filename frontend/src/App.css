@@ -509,4 +509,21 @@ body {
   .reviews-grid {
     grid-template-columns: 1fr;
   }
+    .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-link,
+  .nav-login,
+  .btn-logout {
+    width: 90%;
+    text-align: center;
+  }
+
+  .navbar-glass .container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
