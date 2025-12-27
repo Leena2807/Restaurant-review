@@ -20,10 +20,10 @@ const saveRestaurant = () => {
   console.log("Sending restaurant:", restaurant);
 
   RestaurantDataService.createRestaurant(restaurant)
-    .then(response => {
-      console.log("Response:", response.data);
-      alert("Restaurant added successfully");
-    })
+   .then(() => {
+  alert("Restaurant added successfully");
+  window.location.href = "/restaurants";
+})
     .catch(e => {
       alert("Error adding restaurant");
       console.log("ERROR:", e);
