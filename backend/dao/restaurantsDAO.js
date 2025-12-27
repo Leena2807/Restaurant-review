@@ -110,12 +110,13 @@ export default class RestaurantsDAO {
       return cuisines
     }
   }
-}
-static async addRestaurant(restaurant) {
+ static async addRestaurant(restaurant) {
   try {
-    return await this.restaurants.insertOne(restaurant);
+    return await restaurants.insertOne(restaurant);
   } catch (e) {
     console.error(`Unable to add restaurant: ${e}`);
     return { error: e };
   }
+}
+
 }
