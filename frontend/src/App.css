@@ -599,4 +599,10 @@ body {
   .navbar-glass .container{
     padding-bottom:30px;
   }
+
+  .add-restaurant-card {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
 }
