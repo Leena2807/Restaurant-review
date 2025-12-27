@@ -16,16 +16,19 @@ const AddRestaurant = () => {
     setRestaurant({ ...restaurant, [name]: value });
   };
 
-  const saveRestaurant = () => {
-    RestaurantDataService.createRestaurant(restaurant)
-      .then(() => {
-        alert("Restaurant added successfully");
-      })
-      .catch(e => {
-        alert("Error adding restaurant");
-        console.log(e);
-      });
-  };
+const saveRestaurant = () => {
+  console.log("Sending restaurant:", restaurant);
+
+  RestaurantDataService.createRestaurant(restaurant)
+    .then(response => {
+      console.log("Response:", response.data);
+      alert("Restaurant added successfully");
+    })
+    .catch(e => {
+      alert("Error adding restaurant");
+      console.log("ERROR:", e);
+    });
+};
 
   return (
     <div className="submit-form">
