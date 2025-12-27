@@ -26,7 +26,8 @@ function App() {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    minHeight: "100vh"
+    minHeight: "100vh",
+       backgroundColor: "#111",
   }}>
       {/* Fixed Navbar with proper alignment */}
       <nav className="navbar-glass">
