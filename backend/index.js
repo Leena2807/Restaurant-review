@@ -9,32 +9,35 @@ dotenv.config()
 const port = process.env.PORT || 5001
 
 MongoClient.connect(
-    process.env.MONGO_URI || "mongodb://admin:password@localhost:27017",
+    process.env.MONGO_URI,
     {
         maxPoolSize: 50,
         wtimeoutMS: 2500,
         serverSelectionTimeoutMS: 5000,
         socketTimeoutMS: 45000,
     }
-).catch(err => {
+)
+.catch(err => {
     console.error("Failed to connect to MongoDB:", err.stack)
     process.exit(1)
 })
 .then(async client => {
     try {
-       console.log("Connected to MongoDB successfully")
+        console.log("Connected to MongoDB successfully")
 
-const db = client.db(process.env.RESTREVIEWS_NS)
-const count = await db.collection("restaurants").countDocuments()
-console.log(`Using database: ${process.env.RESTREVIEWS_NS}`)
-console.log(`Restaurant count in DB: ${count}`)
+        const dbName = process.env.RESTREVIEWS_NS || "restaurant_reviews"
+        const db = client.db(dbName)
 
-await RestaurantsDAO.injectDB(client)
-await ReviewsDAO.injectDB(client)
+        const count = await db.collection("restaurants").countDocuments()
+        console.log(`Using database: ${dbName}`)
+        console.log(`Restaurant count in DB: ${count}`)
 
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`)
-})
+        await RestaurantsDAO.injectDB(client)
+        await ReviewsDAO.injectDB(client)
+
+        app.listen(port, () => {
+            console.log(`Server listening on port ${port}`)
+        })
     } catch (error) {
         console.error("Error initializing database:", error)
         process.exit(1)
