@@ -111,3 +111,11 @@ export default class RestaurantsDAO {
     }
   }
 }
+static async addRestaurant(restaurant) {
+  try {
+    return await this.restaurants.insertOne(restaurant);
+  } catch (e) {
+    console.error(`Unable to add restaurant: ${e}`);
+    return { error: e };
+  }
+}
