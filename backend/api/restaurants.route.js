@@ -23,9 +23,13 @@ router.route("/add").post(async (req, res) => {
     const result = await RestaurantsDAO.addRestaurant(restaurant);
 
     res.status(201).json({ status: "success", restaurant: result });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
+  }  catch (e) {
+  console.error("ADD RESTAURANT ERROR:", e);
+  res.status(500).json({
+    error: e.message,
+    stack: e.stack
+  });
+}
 });
 
 router
