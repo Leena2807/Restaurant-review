@@ -30,5 +30,8 @@ class RestaurantDataService {
   }
 
 }
+createRestaurant(data) {
+  return http.post("/add", data);
+}
 
 export default new RestaurantDataService();
